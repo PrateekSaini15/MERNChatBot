@@ -1,9 +1,7 @@
 import Chatbot from "react-chatbot-kit";
-
 import ActionProvider from "./BotChat/ActionProvider";
 import MessageParser from "./BotChat/MessageParser";
 import config from "./BotChat/config";
-
 function App() {
   return (
     <div className="App">
