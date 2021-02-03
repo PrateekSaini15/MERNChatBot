@@ -4,6 +4,7 @@ import cors from "cors";
 import env from "dotenv";
 
 import restaurantMasterRoute from "./routes/RestaurantMaster/restaurantMasterRoute.js";
+import foodCategoryRoute from "./routes/FoodCategory/foodCategoryRoute.js";
 
 const app = express();
 
@@ -25,5 +26,6 @@ db.once("open", function () {
 });
 
 app.use("/api/restaurant", restaurantMasterRoute);
+app.use("/api/category", foodCategoryRoute);
 
 app.listen(port, () => console.log(`Server started at ${process.env.PORT}`));

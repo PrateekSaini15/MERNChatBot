@@ -49,7 +49,6 @@ class ChatbotComponent extends Component {
       return <h1>Loading</h1>;
     } else {
       const restaurant = this.state.restaurant;
-      //   console.log(restaurant);
       return (
         <Container>
           <Row>

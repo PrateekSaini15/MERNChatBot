@@ -1,19 +1,13 @@
-import React from "react";
 import { createChatBotMessage } from "react-chatbot-kit";
-
-import LearningOptions from "../LearningOptions/LearningOptions";
-import LinkList from "../components/LinkList/LinkList";
-
+import Options from "../components/Options/Options";
 const config = {
-  botName: "LearningBot",
+  botName: "Restaurant Bot",
   initialMessages: [
     createChatBotMessage(`Hi, I am here to help you. How can I help you?`, {
-      widget: "learningOptions",
+      widget: "options",
     }),
   ],
-  state: {
-    users: [],
-  },
+
   customStyles: {
     backgroundColor: "#376B7E",
   },
@@ -22,12 +16,18 @@ const config = {
   },
   widgets: [
     {
-      widgetName: "learningOptions",
-      widgetFunc: (props) => <LearningOptions {...props} />,
-    },
-    {
-      widgetName: "javascriptLinks",
-      widgetFunc: (props) => <LinkList {...props} />,
+      widgetName: "options",
+      widgetFunc: (props) => <Options {...props} />,
+      props: {
+        options: [
+          {
+            name: "Give a order",
+          },
+          {
+            name: "Tell me about yourself",
+          },
+        ],
+      },
     },
   ],
 };
