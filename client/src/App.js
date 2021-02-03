@@ -1,18 +1,14 @@
-import Chatbot from "react-chatbot-kit";
-import ActionProvider from "./BotChat/ActionProvider";
-import MessageParser from "./BotChat/MessageParser";
-import config from "./BotChat/config";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Home from "./routes/Home/Home";
+import Chatbot from "./routes/Chatbot/Chatbot";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Chatbot
-          config={config}
-          actionProvider={ActionProvider}
-          messageParser={MessageParser}
-        />
-      </header>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route path="/chatbot" component={Chatbot} />
+        <Route path="/" component={Home} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
