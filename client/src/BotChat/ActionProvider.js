@@ -11,9 +11,9 @@ class ActionProvider {
     this.updateChatbotState(greetingMessage);
   }
 
-  takeNewOrder = () => {
+  showItemsOfCategory = (category) => {
     const message = this.createChatBotMessage(
-      "What kind of food would you like to have?"
+      `These are the items from the category ${category}`
     );
     this.updateChatbotState(message);
   };
