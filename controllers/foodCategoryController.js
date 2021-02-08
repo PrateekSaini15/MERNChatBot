@@ -1,7 +1,7 @@
 import Category from "../model/Category.js";
 export function getCategories(req, res) {
   const restaurantId = req.body.RestaurantId;
-  Category.find({ RestaurantId: restaurantId })
+  Category.find({ RestaurantId: restaurantId, IsActive: true })
     .then((categories) => res.status(200).json(categories))
     .catch((error) => console.log(error));
 }
