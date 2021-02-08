@@ -11,6 +11,14 @@ class ActionProvider {
     this.updateChatbotState(greetingMessage);
   }
 
+  showCategoriesOfType = () => {
+    const message = this.createChatBotMessage(
+      `Which kind of food you want to eat?`,
+      { widget: "options" }
+    );
+    this.updateChatbotState(message);
+  };
+
   showItemsOfCategory = (CategoryName) => {
     const message = this.createChatBotMessage(
       `What you want to order in ${CategoryName}?`,
