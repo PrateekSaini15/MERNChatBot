@@ -1,5 +1,6 @@
 import { createChatBotMessage } from "react-chatbot-kit";
 import Options from "../components/Options/Options";
+import FoodItems from "../components/FoodItems/FoodItems";
 const config = {
   botName: "Restaurant Bot",
   initialMessages: [
@@ -14,20 +15,20 @@ const config = {
   chatButton: {
     backgroundColor: "#376B7E",
   },
+
+  state: {
+    currentCategory: "",
+  },
+
   widgets: [
     {
       widgetName: "options",
       widgetFunc: (props) => <Options {...props} />,
-      props: {
-        options: [
-          {
-            name: "Give a order",
-          },
-          {
-            name: "Tell me about yourself",
-          },
-        ],
-      },
+    },
+    {
+      widgetName: "items",
+      widgetFunc: (props) => <FoodItems {...props} />,
+      mapStateToProps: ["currentCategory"],
     },
   ],
 };

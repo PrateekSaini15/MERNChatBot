@@ -11,9 +11,10 @@ class ActionProvider {
     this.updateChatbotState(greetingMessage);
   }
 
-  showItemsOfCategory = (category) => {
+  showItemsOfCategory = (CategoryName) => {
     const message = this.createChatBotMessage(
-      `These are the items from the category ${category}`
+      `What you want to order in ${CategoryName}?`,
+      { widget: "items" }
     );
     this.updateChatbotState(message);
   };

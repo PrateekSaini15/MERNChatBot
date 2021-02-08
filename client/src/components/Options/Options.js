@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getAllCategories } from "../../redux/actions/foodCategoryActions";
+
 import "./Options.css";
 
 class Options extends Component {
@@ -12,26 +13,25 @@ class Options extends Component {
     const categories = this.props.categoriesList.map((category) => (
       <button
         key={category._id}
-        onClick={() =>
-          this.props.actionProvider.showItemsOfCategory(category.CategoryName)
-        }
+        onClick={() => {
+          this.props.setState((prevState) => ({
+            ...prevState,
+            currentCategory: category._id,
+          }));
+          this.props.actionProvider.showItemsOfCategory(category.CategoryName);
+        }}
       >
         {category.CategoryName}
       </button>
     ));
-    return (
-      <div>
-        {/* <button onClick={this.props.actionProvider.takeNewOrder}>
-          New Order
-        </button> */}
-        {categories}
-      </div>
-    );
+    return <div>{categories}</div>;
   }
 }
 
 function mapSatateToProps(store) {
-  return { categoriesList: store.foodCategory.categoriesList };
+  return {
+    categoriesList: store.foodCategory.categoriesList,
+  };
 }
 
 export default connect(mapSatateToProps, { getAllCategories })(Options);
