@@ -6,6 +6,7 @@ import env from "dotenv";
 import restaurantMasterRoute from "./routes/RestaurantMaster/restaurantMasterRoute.js";
 import foodCategoryRoute from "./routes/FoodCategory/foodCategoryRoute.js";
 import foodItemRoute from "./routes/FoodItem/foodItemRoutes.js";
+import foodItemTypeRoute from "./routes/FoodItemType/foodItemTypeRoutes.js";
 
 const app = express();
 
@@ -29,5 +30,6 @@ db.once("open", function () {
 app.use("/api/restaurant", restaurantMasterRoute);
 app.use("/api/category", foodCategoryRoute);
 app.use("/api/food", foodItemRoute);
+app.use("/api/type", foodItemTypeRoute);
 
 app.listen(port, () => console.log(`Server started at ${process.env.PORT}`));
