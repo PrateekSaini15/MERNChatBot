@@ -8,6 +8,7 @@ import { ConditionallyRender } from "react-util-kit";
 import ActionProvider from "../../BotChat/ActionProvider";
 import MessageParser from "../../BotChat/MessageParser";
 import config from "../../BotChat/config";
+import Cart from "../../components/Cart/Cart";
 import {
   isSelected,
   removeSelectedRestaurant,
@@ -20,10 +21,12 @@ class ChatbotComponent extends Component {
     this.state = {
       restaurant: {},
       showChatBot: false,
+      showCart: false,
     };
     this.handleClick = this.handleClick.bind(this);
     this.getRestaurantDetails = this.getRestaurantDetails.bind(this);
     this.toggleChatbot = this.toggleChatbot.bind(this);
+    this.toggleCart = this.toggleCart.bind(this);
   }
 
   componentDidMount() {
@@ -38,8 +41,15 @@ class ChatbotComponent extends Component {
 
   toggleChatbot() {
     this.setState({
-      ...this.setState,
+      ...this.State,
       showChatBot: !this.state.showChatBot,
+    });
+  }
+
+  toggleCart() {
+    this.setState({
+      ...this.State,
+      showCart: !this.state.showCart,
     });
   }
 
@@ -72,7 +82,12 @@ class ChatbotComponent extends Component {
             </Col>
           </Row>
           <Row>
-            <Col></Col>
+            <Col>
+              <ConditionallyRender
+                ifTrue={this.state.showCart}
+                show={<Cart />}
+              />
+            </Col>
           </Row>
           <Row>
             <Col sm={{ span: 6, offset: 10 }}>
@@ -89,6 +104,7 @@ class ChatbotComponent extends Component {
             </Col>
             <Col>
               <button onClick={this.toggleChatbot}>Show</button>
+              <button onClick={this.toggleCart}>Cart</button>
             </Col>
           </Row>
         </Container>

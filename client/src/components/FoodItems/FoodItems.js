@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getItems } from "../../redux/actions/foodItemActions";
-
+import { addItemToCart } from "../../redux/actions/cartActions";
 class FoodItems extends Component {
   constructor(props) {
     super(props);
@@ -26,7 +26,9 @@ class FoodItems extends Component {
     return (
       <div>
         {this.props.itemList.map((item) => (
-          <button key={item._id}>{item.ItemName}</button>
+          <button key={item._id} onClick={() => this.props.addItemToCart(item)}>
+            {item.ItemName}
+          </button>
         ))}
         <button
           key={0}
@@ -45,4 +47,4 @@ function mapStateToProps(store) {
   };
 }
 
-export default connect(mapStateToProps, { getItems })(FoodItems);
+export default connect(mapStateToProps, { getItems, addItemToCart })(FoodItems);
