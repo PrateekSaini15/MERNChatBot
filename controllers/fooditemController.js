@@ -4,6 +4,7 @@ function makeListOfFoodItems(foodItems) {
   const list = foodItems.map((foodItem) => ({
     _id: foodItem._id,
     ItemName: foodItem.ItemName,
+    Price: foodItem.Price,
   }));
   return list;
 }
