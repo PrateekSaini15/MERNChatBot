@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { Button, Container, Row, Col } from "react-bootstrap";
+import { ConditionallyRender } from "react-util-kit";
 
 import ActionProvider from "../../BotChat/ActionProvider";
 import MessageParser from "../../BotChat/MessageParser";
@@ -18,9 +19,11 @@ class ChatbotComponent extends Component {
     super(props);
     this.state = {
       restaurant: {},
+      showChatBot: false,
     };
     this.handleClick = this.handleClick.bind(this);
     this.getRestaurantDetails = this.getRestaurantDetails.bind(this);
+    this.toggleChatbot = this.toggleChatbot.bind(this);
   }
 
   componentDidMount() {
@@ -31,6 +34,13 @@ class ChatbotComponent extends Component {
 
   handleClick() {
     this.props.removeSelectedRestaurant();
+  }
+
+  toggleChatbot() {
+    this.setState({
+      ...this.setState,
+      showChatBot: !this.state.showChatBot,
+    });
   }
 
   getRestaurantDetails() {
@@ -66,11 +76,19 @@ class ChatbotComponent extends Component {
           </Row>
           <Row>
             <Col sm={{ span: 6, offset: 10 }}>
-              <Chatbot
-                config={config}
-                actionProvider={ActionProvider}
-                messageParser={MessageParser}
+              <ConditionallyRender
+                ifTrue={this.state.showChatBot}
+                show={
+                  <Chatbot
+                    config={config}
+                    actionProvider={ActionProvider}
+                    messageParser={MessageParser}
+                  />
+                }
               />
+            </Col>
+            <Col>
+              <button onClick={this.toggleChatbot}>Show</button>
             </Col>
           </Row>
         </Container>
