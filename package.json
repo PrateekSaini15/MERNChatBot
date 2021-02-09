@@ -25,6 +25,7 @@
     "express": "^4.17.1",
     "mongoose": "^5.11.13",
     "mongoose-autopopulate": "^0.12.3",
+    "react-util-kit": "0.0.14",
     "shortid": "^2.2.16"
   },
   "devDependencies": {

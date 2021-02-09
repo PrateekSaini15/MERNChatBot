@@ -23,12 +23,17 @@ class FoodItems extends Component {
   }
 
   render() {
-    console.log(this.props.itemList);
     return (
       <div>
         {this.props.itemList.map((item) => (
           <button key={item._id}>{item.ItemName}</button>
         ))}
+        <button
+          key={0}
+          onClick={() => this.props.actionProvider.showCategoriesOfType()}
+        >
+          Back
+        </button>
       </div>
     );
   }

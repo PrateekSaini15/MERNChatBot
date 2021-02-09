@@ -6,7 +6,6 @@ import "./Options.css";
 
 class Options extends Component {
   componentDidMount() {
-    console.log(this.props.currentType);
     this.props.getAllCategories(this.props.currentType);
   }
 

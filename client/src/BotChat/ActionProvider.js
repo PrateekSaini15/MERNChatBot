@@ -28,10 +28,15 @@ class ActionProvider {
   };
 
   updateChatbotState(message) {
-    this.setState((prevState) => ({
-      ...prevState,
-      messages: [...prevState.messages, message],
-    }));
+    this.setState((prevState) => {
+      if (prevState.messages.length > 1) {
+        prevState.messages.pop();
+      }
+      return {
+        ...prevState,
+        messages: [...prevState.messages, message],
+      };
+    });
   }
 }
 
