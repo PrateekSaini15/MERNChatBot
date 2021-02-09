@@ -21,21 +21,24 @@ const config = {
 
   state: {
     currentCategory: "",
+    currentType: "",
   },
 
   widgets: [
     {
       widgetName: "options",
       widgetFunc: (props) => <Options {...props} />,
+      mapStateToProps: ["currentType"],
     },
     {
       widgetName: "items",
       widgetFunc: (props) => <FoodItems {...props} />,
-      mapStateToProps: ["currentCategory"],
+      mapStateToProps: ["currentCategory", "currentType"],
     },
     {
       widgetName: "types",
       widgetFunc: (props) => <FoodItemTypes {...props} />,
+      mapStateToProps: ["currentType"],
     },
   ],
 };

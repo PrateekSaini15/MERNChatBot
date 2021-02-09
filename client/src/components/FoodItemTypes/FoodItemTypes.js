@@ -13,7 +13,13 @@ class FoodItemTypes extends React.Component {
     const markup = types.map((type) => (
       <button
         key={type._id}
-        onClick={() => this.props.actionProvider.showCategoriesOfType()}
+        onClick={() => {
+          this.props.setState((prevState) => ({
+            ...prevState,
+            currentType: type._id,
+          }));
+          this.props.actionProvider.showCategoriesOfType();
+        }}
       >
         {type.Type}
       </button>

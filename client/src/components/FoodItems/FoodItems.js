@@ -18,10 +18,12 @@ class FoodItems extends Component {
   getItems() {
     this.props.getItems({
       categoryId: this.props.currentCategory,
+      type: this.props.currentType,
     });
   }
 
   render() {
+    console.log(this.props.itemList);
     return (
       <div>
         {this.props.itemList.map((item) => (
