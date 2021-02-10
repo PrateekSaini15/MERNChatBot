@@ -4,14 +4,16 @@ import {
   REMOVE_SELECTED_ITEM_FROM_CART,
 } from "../actions/actionTypes";
 
-const intialState = {
+const initialState = {
   items: [],
+  rerender: false, // this is a dummy variable to remount the component when the same item is selected more than once.
 };
 
-export default function cartReducer(state = intialState, action) {
+export default function cartReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_ITEM_TO_CART:
-      return { ...state, items: [...state.items, action.payload] };
+      state = addItemToCart(state, action.payload);
+      return { ...state, rerender: !state.rerender };
     case CLEAR_CART:
       return { ...state, items: [] };
     case REMOVE_SELECTED_ITEM_FROM_CART:
@@ -22,4 +24,20 @@ export default function cartReducer(state = intialState, action) {
     default:
       return state;
   }
+}
+
+function addItemToCart(state, item) {
+  const items = state.items;
+  let itemFound = false;
+  for (let i = 0; i < items.length; i++) {
+    if (item._id === items[i]._id) {
+      itemFound = true;
+      items[i].Quantity++;
+    }
+  }
+  if (!itemFound) {
+    item.Quantity = 1;
+    return { ...state, items: [...state.items, item] };
+  }
+  return { ...state, items: items };
 }

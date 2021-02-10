@@ -8,7 +8,7 @@ class Cart extends React.Component {
   render() {
     const markup = this.props.items.map((item) => (
       <li key={item._id}>
-        {item.ItemName} {item.Price}
+        {item.ItemName} {item.Price} {item.Quantity}
         <button onClick={() => this.props.removeSelectedItemFromCart(item)}>
           remove
         </button>{" "}
@@ -33,7 +33,7 @@ class Cart extends React.Component {
 }
 
 function mapStateToProps(store) {
-  return { items: store.cart.items };
+  return { items: store.cart.items, rerender: store.cart.rerender };
 }
 
 export default connect(mapStateToProps, {
