@@ -17,10 +17,8 @@ export default function cartReducer(state = initialState, action) {
     case CLEAR_CART:
       return { ...state, items: [] };
     case REMOVE_SELECTED_ITEM_FROM_CART:
-      return {
-        ...state,
-        items: state.items.filter((item) => item._id !== action.payload._id),
-      };
+      state = removeItemFromCart(state, action.payload);
+      return { ...state, rerender: !state.rerender };
     default:
       return state;
   }
@@ -40,4 +38,19 @@ function addItemToCart(state, item) {
     return { ...state, items: [...state.items, item] };
   }
   return { ...state, items: items };
+}
+
+function removeItemFromCart(state, item) {
+  const items = state.items;
+
+  for (let i = 0; i < items.length; i++) {
+    if (items[i]._id === item._id) {
+      if (items[i].Quantity > 1) {
+        items[i].Quantity--;
+        return { ...state, items: items };
+      } else {
+        return { ...state, items: items.filter((itm) => itm._id !== item._id) };
+      }
+    }
+  }
 }
