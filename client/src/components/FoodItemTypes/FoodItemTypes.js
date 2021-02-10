@@ -1,11 +1,24 @@
 import React from "react";
 import { connect } from "react-redux";
+import { ConditionallyRender } from "react-util-kit";
 
 import { getFoodItemTypesByRestaurant } from "../../redux/actions/foodItemTypesActions";
+import Cart from "../../components/Cart/Cart";
 
 class FoodItemTypes extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showCart: false,
+    };
+    this.toggleCart = this.toggleCart.bind(this);
+  }
   componentDidMount() {
     this.props.getFoodItemTypesByRestaurant();
+  }
+
+  toggleCart() {
+    this.setState({ ...this.state, showCart: !this.state.showCart });
   }
 
   render() {
@@ -24,7 +37,14 @@ class FoodItemTypes extends React.Component {
         {type.Type}
       </button>
     ));
-    return <div>{markup}</div>;
+    return (
+      <div>
+        {markup} <button onClick={this.toggleCart}>Cart</button>
+        <div>
+          <ConditionallyRender ifTrue={this.state.showCart} show={<Cart />} />{" "}
+        </div>
+      </div>
+    );
   }
 }
 
